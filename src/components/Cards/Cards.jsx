@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
-import Card from './Card';
-import styles from './Card.module.css';
+
+import Card from '../Card/Card';
+import styles from './Cards.module.css';
 
 export default function Cards(props) {
   const personajes = props.characters;

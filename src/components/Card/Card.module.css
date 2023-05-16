@@ -1,14 +1,3 @@
-.columnas {
-  display: flex;
-  flex-direction: column;
-}
-
-.filas {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
 .boton {
   margin-bottom: 4px;
   min-width: 100px;
@@ -95,21 +84,4 @@
 }
 .imagenes:hover {
   transform: scale(1.1);
-}
-
-.inputs {
-  margin: 20px;
-  background-color: black;
-  border: 5px solid white;
-  border-radius: 25%;
-  height: 30px;
-  box-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px #daa520;
-  color: white;
-  font-family: Roboto;
-  text-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px #daa520;
-  transition: transform 0.3s ease;
-}
-.inputs:hover {
-  transform: scale(1.1);
-  background-color: dimgray;
 }

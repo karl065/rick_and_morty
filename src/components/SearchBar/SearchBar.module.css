@@ -1,0 +1,37 @@
+.boton {
+  margin-bottom: 4px;
+  min-width: 100px;
+  min-height: 30px;
+  width: 100px;
+  background-color: black;
+  color: #ffffff;
+  border-radius: 25%;
+  padding: 5px;
+  font-family: Roboto;
+  text-transform: uppercase;
+  box-shadow: 1px 1px 2px black, 0 0 25px red, 0 0 5px darkred;
+  text-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 30px #daa520;
+  transition: transform 0.3s ease;
+}
+
+.boton:hover {
+  transform: scale(1.1);
+  background-color: dimgray;
+}
+
+.inputs {
+  margin: 20px;
+  background-color: black;
+  border: 5px solid white;
+  border-radius: 25%;
+  height: 30px;
+  box-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px #daa520;
+  color: white;
+  font-family: Roboto;
+  text-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px #daa520;
+  transition: transform 0.3s ease;
+}
+.inputs:hover {
+  transform: scale(1.1);
+  background-color: dimgray;
+}

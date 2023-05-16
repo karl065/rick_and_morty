@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import {useState} from 'react';
-import styles from './Card.module.css';
+import styles from './SearchBar.module.css';
 
 export default function SearchBar(props) {
   const [valorBuscado, setValorBuscado] = useState('');
