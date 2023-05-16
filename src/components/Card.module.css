@@ -1,0 +1,95 @@
+.columnas {
+  display: flex;
+  flex-direction: column;
+}
+
+.filas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.boton {
+  margin-top: 4px;
+  min-width: 100px;
+  min-height: 30px;
+  width: 100px;
+  background-color: black;
+  color: #ffffff;
+  border-radius: 25%;
+  padding: 5px;
+  font-family: Roboto;
+  text-transform: uppercase;
+  box-shadow: 1px 1px 2px black, 0 0 25px red, 0 0 5px darkred;
+  text-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 30px #daa520;
+  transition: transform 0.3s ease;
+}
+
+.boton:hover {
+  transform: scale(1.1);
+}
+
+.card {
+  width: 360px;
+  flex: 0 0 300px;
+  margin: 10px;
+  box-sizing: content-box;
+  border-radius: 25%;
+  background-image: url('https://res.cloudinary.com/dpjeltekx/image/upload/v1684187830/Ryck%20And%20Morty/17363879_MotionElements_purple-stroke-cyber_converted_616517-640x360-3s-q1_cpyecv.gif');
+  border: 5px solid white;
+  box-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px #daa520;
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.1);
+}
+
+.textoPrimario {
+  margin: 4px;
+  color: #ffffff;
+  text-align: center;
+  font-family: Roboto;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px #daa520;
+}
+.textoSecundario {
+  margin: 4px;
+  color: #a5a2a2;
+  text-align: center;
+  font-family: Roboto;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px black, 0 0 25px red, 0 0 5px darkred;
+}
+
+.textoTerciario {
+  margin: 4px;
+  color: #ffffff;
+  text-align: center;
+  font-family: Roboto;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px black, 0 0 25px yellowgreen, 0 0 5px darkgreen;
+}
+
+.imagenes {
+  margin-bottom: 8px;
+  height: 300px;
+  width: 300px;
+  box-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px #daa520;
+  border-radius: 25%;
+}
+
+.inputs {
+  margin: 20px;
+  background-color: black;
+  border: 5px solid white;
+  border-radius: 25%;
+  height: 30px;
+  box-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px #daa520;
+  color: white;
+  font-family: Roboto;
+  text-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px #daa520;
+  transition: transform 0.3s ease;
+}
+.inputs:hover {
+  transform: scale(1.1);
+}

@@ -1,11 +1,13 @@
+/* eslint-disable react/prop-types */
 import Card from './Card';
+import styles from './Card.module.css';
 
 export default function Cards(props) {
   const personajes = props.characters;
   return (
-    <div className="row">
+    <div className={styles.filas}>
       {personajes.map((personaje, index) => (
-        <div key={index} className="col mb-4">
+        <div key={index} className={styles.columnas}>
           {
             <Card
               id={personaje.id}

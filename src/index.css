@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('https://res.cloudinary.com/dpjeltekx/image/upload/v1684170132/Ryck%20And%20Morty/rich_and_morty_ninhyn.gif');
 }
 
 code {
