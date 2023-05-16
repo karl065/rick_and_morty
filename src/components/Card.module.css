@@ -10,7 +10,7 @@
 }
 
 .boton {
-  margin-top: 4px;
+  margin-bottom: 4px;
   min-width: 100px;
   min-height: 30px;
   width: 100px;
@@ -35,6 +35,7 @@
   flex: 0 0 300px;
   margin: 10px;
   box-sizing: content-box;
+  justify-content: center;
   border-radius: 25%;
   background-image: url('https://res.cloudinary.com/dpjeltekx/image/upload/v1684187830/Ryck%20And%20Morty/17363879_MotionElements_purple-stroke-cyber_converted_616517-640x360-3s-q1_cpyecv.gif');
   border: 5px solid white;
@@ -52,7 +53,12 @@
   font-family: Roboto;
   text-transform: uppercase;
   text-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px #daa520;
+  transition: transform 0.3s ease;
 }
+.textoPrimario:hover {
+  transform: scale(1.1);
+}
+
 .textoSecundario {
   margin: 4px;
   color: #a5a2a2;
@@ -60,6 +66,10 @@
   font-family: Roboto;
   text-transform: uppercase;
   text-shadow: 1px 1px 2px black, 0 0 25px red, 0 0 5px darkred;
+  transition: transform 0.3s ease;
+}
+.textoSecundario:hover {
+  transform: scale(1.1);
 }
 
 .textoTerciario {
@@ -69,10 +79,14 @@
   font-family: Roboto;
   text-transform: uppercase;
   text-shadow: 1px 1px 2px black, 0 0 25px yellowgreen, 0 0 5px darkgreen;
+  transition: transform 0.3s ease;
+}
+.textoTerciario:hover {
+  transform: scale(1.1);
 }
 
 .imagenes {
-  margin-bottom: 8px;
+  margin-top: 8px;
   height: 300px;
   width: 300px;
   box-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px #daa520;
