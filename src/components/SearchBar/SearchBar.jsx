@@ -3,15 +3,19 @@ import {useState} from 'react';
 import styles from './SearchBar.module.css';
 
 export default function SearchBar(props) {
-  const [valorBuscado, setValorBuscado] = useState('');
-
-  const buscar = () => {
-    props.onSearch(valorBuscado);
-    setValorBuscado('');
-  };
+  const [id, setId] = useState('');
 
   const handleChange = (event) => {
-    setValorBuscado(event.target.value);
+    setId(event.target.value);
+  };
+
+  const handleClick = () => {
+    props.onSearch(id);
+    setId('');
+  };
+  const handleClickRandom = () => {
+    const random = Math.floor(Math.random() * 826) + 1;
+    props.onSearch(random);
   };
 
   return (
@@ -19,11 +23,14 @@ export default function SearchBar(props) {
       <input
         className={styles.inputs}
         type="search"
-        value={valorBuscado}
+        value={id}
         onChange={handleChange}
       />
-      <button onClick={buscar} className={styles.boton}>
+      <button onClick={handleClick} className={styles.boton}>
         Agregar
+      </button>
+      <button onClick={handleClickRandom} className={styles.boton}>
+        Random
       </button>
     </div>
   );

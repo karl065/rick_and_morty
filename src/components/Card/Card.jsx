@@ -1,26 +1,21 @@
 /* eslint-disable react/prop-types */
 import styles from './Card.module.css';
 
-export default function Card({
-  name,
-  status,
-  species,
-  gender,
-  origin,
-  image,
-  onClose,
-}) {
+export default function Card(props) {
+  const handleClick = () => {
+    props.onClose(props.id);
+  };
   return (
     <div className={styles.card}>
-      <img className={styles.imagenes} src={image} alt="image" />
-      <h2 className={styles.textoPrimario}>● {name}</h2>
-      <h3 className={styles.textoSecundario}>● Estado: {status}</h3>
-      <h3 className={styles.textoTerciario}>● Especie: {species}</h3>
-      <h3 className={styles.textoPrimario}>● Género: {gender}</h3>
+      <img className={styles.imagenes} src={props.image} alt="image" />
+      <h2 className={styles.textoPrimario}>● {props.name}</h2>
+      <h3 className={styles.textoSecundario}>● Estado: {props.status}</h3>
+      <h3 className={styles.textoTerciario}>● Especie: {props.species}</h3>
+      <h3 className={styles.textoPrimario}>● Género: {props.gender}</h3>
       <h3 className={styles.textoSecundario}>
-        ● Origen: {origin !== 'unknown' ? origin : 'sin registro '}
+        ● Origen: {props.origin !== 'unknown' ? props.origin : 'sin registro '}
       </h3>
-      <button onClick={onClose} className={styles.boton}>
+      <button onClick={handleClick} className={styles.boton}>
         X
       </button>
     </div>

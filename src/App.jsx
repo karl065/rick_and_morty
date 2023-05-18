@@ -1,14 +1,45 @@
+/* eslint-disable no-prototype-builtins */
+import {useState} from 'react';
 import './App.css';
 import Cards from './components/Cards/Cards.jsx';
-import SearchBar from './components/SearchBar/SearchBar.jsx';
-import characters from './data.jsx';
+import Nav from './components/Nav';
+import axios from 'axios';
 
 function App() {
+  const [characters, setCharacters] = useState([]);
+
+  const filtrarCharacter = (id) => {
+    let charactersFiltrados = characters.filter(
+      (character) => id !== character.id
+    );
+    return charactersFiltrados;
+  };
+
+  const onSearch = (id) => {
+    axios(`https://rickandmortyapi.com/api/character/${id}`).then(({data}) => {
+      if (data.name) {
+        const filtrar = filtrarCharacter(id);
+        const existeCharacter = filtrar.some((character) => character.id == id);
+        if (existeCharacter) {
+          window.alert('¡El ID ya existe!');
+        } else {
+          setCharacters((oldChars) => [...oldChars, data]);
+        }
+      } else {
+        window.alert('¡No hay personajes con este ID!');
+      }
+    });
+  };
+
+  const onClose = (id) => {
+    setCharacters(filtrarCharacter(id));
+  };
+
   return (
     <div className="App">
-      <SearchBar onSearch={(characterID) => window.alert(characterID)} />
+      <Nav onSearch={onSearch} />
       <div className="container mt-5">
-        <Cards characters={characters} />
+        <Cards characters={characters} onClose={onClose} />
       </div>
     </div>
   );
