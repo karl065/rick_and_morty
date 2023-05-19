@@ -1,48 +1,60 @@
-.boton {
-  margin-bottom: 4px;
-  min-width: 30px;
-  min-height: 30px;
-  width: 30px;
-  background-color: black;
-  color: #ffffff;
-  border-radius: 25%;
-  padding: 5px;
-  font-family: Roboto;
-  text-transform: uppercase;
-  box-shadow: 1px 1px 2px black, 0 0 25px red, 0 0 5px darkred;
-  text-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 30px #daa520;
+.imagenes {
+  margin: 50px;
+  height: 300px;
+  width: 300px;
+  box-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px #daa520;
+  border-radius: 50%;
   transition: transform 0.3s ease;
 }
-
-.boton:hover {
+.imagenes:hover {
   transform: scale(1.1);
-  background-color: dimgray;
 }
 
 .card {
-  position: relative;
-  width: 360px;
+  align-items: center;
+  height: full;
+  width: 100%;
   flex: 0 0 300px;
   margin: 10px;
   box-sizing: content-box;
-  justify-content: center;
   border-radius: 25%;
-  background-image: url('https://res.cloudinary.com/dpjeltekx/image/upload/v1684187830/Ryck%20And%20Morty/17363879_MotionElements_purple-stroke-cyber_converted_616517-640x360-3s-q1_cpyecv.gif');
+  background-image: url(' https://res.cloudinary.com/dpjeltekx/image/upload/v1684187653/Ryck%20And%20Morty/24837355_MotionElements_digital-abstract_converted_616516-640x360-3s-q2_zqfm27.gif');
   border: 5px solid yellow;
   box-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px #daa520;
   transition: transform 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: nowrap;
 }
 .card:hover {
   transform: scale(1.1);
 }
 
-.card h2 {
-  position: absolute;
-  top: 5%;
-  left: 11%;
-  color: black;
+.filas {
+  /* height: 100vh; */
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
 }
 
+.textoNombre {
+  margin: 4px;
+  margin-bottom: 50px;
+  color: #ffffff;
+  text-align: center;
+  font-family: Roboto;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px #daa520;
+  transition: transform 0.3s ease;
+}
+.textoNombre:hover {
+  transform: scale(1.1);
+}
 .textoPrimario {
   margin: 4px;
   color: #ffffff;
@@ -79,17 +91,5 @@
   transition: transform 0.3s ease;
 }
 .textoTerciario:hover {
-  transform: scale(1.1);
-}
-
-.imagenes {
-  margin-top: 8px;
-  height: 300px;
-  width: 300px;
-  box-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px #daa520;
-  border-radius: 25%;
-  transition: transform 0.3s ease;
-}
-.imagenes:hover {
   transform: scale(1.1);
 }
