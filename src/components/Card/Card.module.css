@@ -93,3 +93,7 @@
 .imagenes:hover {
   transform: scale(1.1);
 }
+
+.botonTransparente {
+  background-color: transparent;
+}

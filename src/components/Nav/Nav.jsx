@@ -11,9 +11,15 @@ export default function Nav(props) {
       <Link className={Styles.boton} to="/home">
         Home
       </Link>
+      <Link className={Styles.boton} to="/favorites">
+        Favorites
+      </Link>
       <SearchBar onSearch={onSearch} />
       <Link className={Styles.boton} to="/about">
         About
+      </Link>
+      <Link className={Styles.boton} to="/">
+        Logout
       </Link>
     </div>
   );
