@@ -53,6 +53,7 @@ const Card = (props) => {
       <Link to={`/detail/${props.id}`}>
         <h2 className={styles.textoPrimario}>● {props.name}</h2>
       </Link>
+      <h3 className={styles.textoSecundario}>● ID: {props.id}</h3>
       <h3 className={styles.textoSecundario}>● Estado: {props.status}</h3>
       <h3 className={styles.textoTerciario}>● Especie: {props.species}</h3>
       <h3 className={styles.textoPrimario}>● Género: {props.gender}</h3>
