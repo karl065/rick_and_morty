@@ -11,13 +11,15 @@ const Deatil = () => {
   const [character, setCharacter] = useState({});
 
   const getFromId = (id) => {
-    axios(`https://rickandmortyapi.com/api/character/${id}`).then(({data}) => {
-      if (data.name) {
-        setCharacter(data);
-      } else {
-        window.alert('No hay personajes con ese ID');
+    axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
+      ({data}) => {
+        if (data.name) {
+          setCharacter(data);
+        } else {
+          window.alert('No hay personajes con ese ID');
+        }
       }
-    });
+    );
   };
 
   useEffect(() => {
