@@ -23,8 +23,7 @@ module.exports = http
           ? JSON.stringify(character)
           : 'Character not found';
 
-        res.statusCode = statusCode;
-        res.setHeader('Content-Type', contentType);
+        res.writable(statusCode, {'Content-Type': contentType});
         res.end(response);
       }
     }
