@@ -13,8 +13,17 @@ export default function SearchBar(props) {
     props.onSearch(id);
     setId('');
   };
+
+  const handleKeyPress = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      props.onSearch(id);
+      setId('');
+    }
+  };
+
   const handleClickRandom = () => {
-    let random = Math.floor(Math.random() * 826) + 1;
+    let random = Math.floor(Math.random() * 5) + 1;
     let randomValue = random.toString();
     props.onSearch(randomValue);
   };
@@ -26,6 +35,7 @@ export default function SearchBar(props) {
         type="search"
         value={id}
         onChange={handleChange}
+        onKeyDown={handleKeyPress}
       />
       <button onClick={handleClick} className={styles.boton}>
         Agregar

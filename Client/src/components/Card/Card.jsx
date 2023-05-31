@@ -24,15 +24,11 @@ const Card = (props) => {
     }
   };
 
-  const myFavorites = props.myFavorites;
+  const myFavorites = props.allCharacters;
 
   useEffect(() => {
-    myFavorites.forEach((fav) => {
-      if (fav.id === props.id) {
-        setIsFav(true);
-      }
-    });
-  }, []);
+    setIsFav(myFavorites.some((fav) => fav.id === props.id));
+  }, [props.getFav, props.id]);
 
   const handleClick = () => {
     props.onClose(props.id);
@@ -72,6 +68,7 @@ const Card = (props) => {
 const mapStateToProps = (state) => {
   return {
     myFavorites: state.myFavorites,
+    allCharacters: state.allCharacters,
   };
 };
 

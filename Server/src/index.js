@@ -12,20 +12,20 @@ module.exports = http
       const match = url.match(idRegex);
 
       if (match) {
-        const id = match[1];
+        const [, id] = match;
         const character = data.find(
           (character) => character.id === parseInt(id)
         );
 
-        if (character) {
-          res.statusCode = 200;
-          res.setHeader('Content-Type', 'application/json');
-          res.end(JSON.stringify(character));
-        } else {
-          res.statusCode = 404;
-          res.setHeader('Content-Type', 'text/plain');
-          res.end('Character not found');
-        }
+        const statusCode = character ? 200 : 404;
+        const contentType = character ? 'application/json' : 'text/plain';
+        const response = character
+          ? JSON.stringify(character)
+          : 'Character not found';
+
+        res.statusCode = statusCode;
+        res.setHeader('Content-Type', contentType);
+        res.end(response);
       }
     }
   })

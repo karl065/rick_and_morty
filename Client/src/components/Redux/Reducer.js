@@ -3,9 +3,15 @@ const initialState = {
   myFavorites: [],
   allCharacters: [],
 };
+const order = {};
 
 const favorites = (state = initialState, actions) => {
   switch (actions.type) {
+    case 'GET_FAV':
+      return {
+        ...state,
+        myFavorites: state.allCharacters,
+      };
     case 'ADD_FAV':
       return {
         ...state,
@@ -14,21 +20,27 @@ const favorites = (state = initialState, actions) => {
     case 'REMOVE_FAV':
       return {
         ...state,
+        allCharacters: state.allCharacters.filter(
+          (favorite) => favorite.id !== actions.payload
+        ),
         myFavorites: state.myFavorites.filter(
           (favorite) => favorite.id !== actions.payload
         ),
       };
     case 'FILTER':
-      const copiaState = {...state};
-      const filteredCharacters = copiaState.allCharacters.filter((character) =>
+      const allCharactersCopy = [...state.allCharacters];
+      const filteredCharacters = state.allCharacters.filter((character) =>
         character.gender.includes(actions.payload)
       );
 
-      copiaState.myFavorites = filteredCharacters;
-      return copiaState;
+      order.allCharacters = [...filteredCharacters];
+      return {
+        ...state,
+        myFavorites: filteredCharacters,
+        allCharacters: allCharactersCopy,
+      };
     case 'ORDER':
-      const copiaState2 = {...state};
-      console.log(copiaState2);
+      const copiaState2 = JSON.parse(JSON.stringify(order));
       if (actions.payload === 'A') {
         copiaState2.allCharacters.sort((a, b) => a.id - b.id);
       } else if (actions.payload === 'D') {
@@ -37,6 +49,17 @@ const favorites = (state = initialState, actions) => {
       return {
         ...state,
         myFavorites: copiaState2.allCharacters,
+      };
+    case 'ORDERALL':
+      const copiaState3 = {...state};
+      if (actions.payload === 'A') {
+        copiaState3.allCharacters.sort((a, b) => a.id - b.id);
+      } else if (actions.payload === 'D') {
+        copiaState3.allCharacters.sort((a, b) => b.id - a.id);
+      }
+      return {
+        ...state,
+        myFavorites: copiaState3.allCharacters,
       };
     default:
       return state;
