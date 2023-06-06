@@ -23,7 +23,7 @@ export default function SearchBar(props) {
   };
 
   const handleClickRandom = () => {
-    let random = Math.floor(Math.random() * 5) + 1;
+    let random = Math.floor(Math.random() * 826) + 1;
     let randomValue = random.toString();
     props.onSearch(randomValue);
   };

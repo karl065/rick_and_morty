@@ -1,31 +1,30 @@
-const http = require('http');
-const data = require('./Utils/data.js');
+const express = require('express');
+const routes = require('./Routes/index.js');
+const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json({limit: '10mb'});
 
+const server = express();
 const PORT = 3001;
 
-module.exports = http
-  .createServer(function (req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    const url = req.url;
-    if (url.includes('/rickandmorty/character')) {
-      const idRegex = /\/rickandmorty\/character\/(\d+)/;
-      const match = url.match(idRegex);
+server.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
+server.use(jsonParser);
+server.use(express.json({extended: true}));
+server.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, OPTIONS, PUT, DELETE'
+  );
+  next();
+});
 
-      if (match) {
-        const [, id] = match;
-        const character = data.find(
-          (character) => character.id === parseInt(id)
-        );
+server.use('/rickandmorty', routes);
 
-        const statusCode = character ? 200 : 404;
-        const contentType = character ? 'application/json' : 'text/plain';
-        const response = character
-          ? JSON.stringify(character)
-          : 'Character not found';
-
-        res.writable(statusCode, {'Content-Type': contentType});
-        res.end(response);
-      }
-    }
-  })
-  .listen(PORT, 'localhost');
+server.listen(PORT, () => {
+  console.log('Este server esta corriendo en el puerto: ' + PORT);
+});

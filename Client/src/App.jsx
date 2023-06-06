@@ -11,6 +11,7 @@ import Deatil from './components/Detail/Detail';
 import Form from './components/Form/Form';
 import Error from './components/Error/Error';
 import Favorites from './components/Favorites/Favorites.jsx';
+import {CreateUser} from './components/CreateUser/CreateUser';
 
 function App() {
   const location = useLocation();
@@ -20,17 +21,20 @@ function App() {
 
   const [access, setAccess] = useState(false);
 
-  const EMAIL = 'karlos@hotmail.com';
-  const PASSWORD = '1234carlos';
-
-  const login = (userData) => {
-    if (userData.password === PASSWORD && userData.email === EMAIL) {
-      setAccess(true);
-      navigate('/home');
-    } else {
-      window.alert('Email o Password incorrectos');
+  async function login(userData) {
+    const {email, password} = userData;
+    const URL = 'http://localhost:3001/rickandmorty/login';
+    try {
+      const {data} = await axios.get(
+        URL + `?email=${email}&password=${password}`
+      );
+      const {access} = data;
+      setAccess(data);
+      access ? access && navigate('/home') : window.alert(data.message);
+    } catch (error) {
+      console.log(error.message);
     }
-  };
+  }
 
   const [characters, setCharacters] = useState([]);
 
@@ -41,25 +45,26 @@ function App() {
     return charactersFiltrados;
   };
 
-  const onSearch = (id) => {
-    axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
-      ({data}) => {
-        if (data.name) {
-          const filtrar = filtrarCharacter(id);
-          const existeCharacter = filtrar.some(
-            (character) => character.id == id
-          );
-          if (existeCharacter) {
-            window.alert('¡El ID ya existe!');
-          } else {
-            setCharacters((oldChars) => [...oldChars, data]);
-          }
+  async function onSearch(id) {
+    try {
+      const {data} = await axios.get(
+        `http://localhost:3001/rickandmorty/character/${id}`
+      );
+      if (data.name) {
+        const filtrar = filtrarCharacter(id);
+        const existeCharacter = filtrar.some((character) => character.id == id);
+        if (existeCharacter) {
+          window.alert('¡El ID ya existe!');
         } else {
-          window.alert('¡No hay personajes con este ID!');
+          setCharacters((oldChars) => [...oldChars, data]);
         }
+      } else {
+        window.alert('¡No hay personajes con este ID!');
       }
-    );
-  };
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   const onClose = (id) => {
     setCharacters(filtrarCharacter(id));
@@ -74,6 +79,7 @@ function App() {
       {verNav && <Nav onSearch={onSearch} />}
       <Routes>
         <Route path="/" element={<Form login={login} />} />
+        <Route path="/createuser" element={<CreateUser login={login} />} />
         <Route
           path="/home"
           element={<Cards characters={characters} onClose={onClose} />}

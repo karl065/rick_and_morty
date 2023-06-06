@@ -1,10 +1,12 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 import {useState} from 'react';
-import styles from './Form.module.css';
+import styles from './CreateUser.module.css';
 import {validationForm} from '../Validation/Validation';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
-const Form = ({login}) => {
+export const CreateUser = ({login}) => {
   const [userData, setUserData] = useState({
     email: '',
     password: '',
@@ -15,7 +17,7 @@ const Form = ({login}) => {
     e.preventDefault();
     const errorsArray = Object.values(error);
     if (errorsArray.length === 0) {
-      login(userData);
+      createUsers(userData);
       setUserData({
         email: '',
         password: '',
@@ -38,6 +40,20 @@ const Form = ({login}) => {
       })
     );
   };
+
+  async function createUsers(userData) {
+    const {email, password} = userData;
+    const URL = 'http://localhost:3001/rickandmorty/createUsers';
+
+    try {
+      const {data} = await axios.post(
+        URL + `?email=${email}&password=${password}`
+      );
+      if (data.message === 'Agregado') login(userData);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -73,13 +89,11 @@ const Form = ({login}) => {
           />
           <h3 className={styles.danger}>{error.password}</h3>
           <button className={styles.boton}>Submit</button>
-          <Link className={styles.boton} to={'/createuser'}>
-            Create User
+          <Link className={styles.boton} to={'/'}>
+            back
           </Link>
         </div>
       </form>
     </div>
   );
 };
-
-export default Form;

@@ -15,17 +15,14 @@ const favorites = (state = initialState, actions) => {
     case 'ADD_FAV':
       return {
         ...state,
-        allCharacters: [...state.allCharacters, actions.payload],
+        myFavorites: actions.payload,
+        allCharacters: actions.payload,
       };
     case 'REMOVE_FAV':
       return {
         ...state,
-        allCharacters: state.allCharacters.filter(
-          (favorite) => favorite.id !== actions.payload
-        ),
-        myFavorites: state.myFavorites.filter(
-          (favorite) => favorite.id !== actions.payload
-        ),
+        myFavorites: actions.payload,
+        allCharacters: actions.payload,
       };
     case 'FILTER':
       const allCharactersCopy = [...state.allCharacters];
@@ -60,7 +57,9 @@ const favorites = (state = initialState, actions) => {
       return {
         ...state,
         myFavorites: copiaState3.allCharacters,
+        allCharacters: copiaState3.allCharacters,
       };
+
     default:
       return state;
   }
