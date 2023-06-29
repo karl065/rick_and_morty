@@ -1,25 +1,26 @@
-const {users} = require('../Controllers/createUser.js');
+const {User} = require('../DB_connection.js');
 
-function login(req, res) {
+async function login(req, res) {
   const {email, password} = req.query;
 
-  let userFound = false;
-
-  users.find((user) => {
-    if (user.email === email && user.password === password) {
-      userFound = true;
-    }
-  });
-
-  if (userFound) {
-    return res.status(200).json({
-      access: true,
-    });
+  if (!email || !password) {
+    res.status(400).send('Faltan Datos!');
   } else {
-    return res.status(200).json({
-      access: false,
-      message: 'El usuario no existe',
-    });
+    try {
+      const {dataValues} = await User.findOne({where: {email: email}});
+      if (dataValues) {
+        if (dataValues.password !== password) {
+          return res.status(403).send('Constraseña incorrecta');
+        }
+        await User.update({access: true}, {where: {email: email}});
+        const {access} = await User.findOne({where: {email: email}});
+
+        return res.status(200).json({access: access});
+      }
+      return res.status(404).send('Usuario no encontrado');
+    } catch (error) {
+      return res.status(500).send('Usuario no encontrado');
+    }
   }
 }
 

@@ -43,13 +43,11 @@ export const CreateUser = ({login}) => {
 
   async function createUsers(userData) {
     const {email, password} = userData;
-    const URL = 'http://localhost:3001/rickandmorty/createUsers';
+    const URL = 'http://localhost:3001/rickandmorty/createusers';
 
     try {
-      const {data} = await axios.post(
-        URL + `?email=${email}&password=${password}`
-      );
-      if (data.message === 'Agregado') login(userData);
+      const {data} = await axios.post(URL, {email, password});
+      if (data === 'Agregado') login(userData);
     } catch (error) {
       console.log(error.message);
     }

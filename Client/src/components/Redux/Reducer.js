@@ -15,8 +15,7 @@ const favorites = (state = initialState, actions) => {
     case 'ADD_FAV':
       return {
         ...state,
-        myFavorites: actions.payload,
-        allCharacters: actions.payload,
+        allCharacters: [...state.allCharacters, actions.payload],
       };
     case 'REMOVE_FAV':
       return {

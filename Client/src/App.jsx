@@ -17,7 +17,7 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const verNav = !['/'].includes(location.pathname);
+  const verNav = !['/', '/createuser'].includes(location.pathname);
 
   const [access, setAccess] = useState(false);
 
@@ -29,8 +29,24 @@ function App() {
         URL + `?email=${email}&password=${password}`
       );
       const {access} = data;
-      setAccess(data);
+      setAccess(access);
+      localStorage.setItem('user', email);
       access ? access && navigate('/home') : window.alert(data.message);
+    } catch (error) {
+      error.response.data
+        ? window.alert(error.response.data)
+        : console.log(error.message);
+    }
+  }
+
+  async function logout() {
+    const email = localStorage.getItem('user');
+    const URL = 'http://localhost:3001/rickandmorty/logout';
+    localStorage.removeItem('user');
+    const access = false;
+    try {
+      const {data} = await axios.put(URL, {email, access});
+      window.alert(data);
     } catch (error) {
       console.log(error.message);
     }
@@ -71,12 +87,19 @@ function App() {
   };
 
   useEffect(() => {
-    !access && navigate('/');
+    const user = localStorage.getItem('user');
+
+    if (user) {
+      navigate('/home');
+    } else {
+      setAccess(false);
+      !access && navigate('/');
+    }
   }, [access]);
 
   return (
     <div className="App">
-      {verNav && <Nav onSearch={onSearch} />}
+      {verNav && <Nav onSearch={onSearch} logout={logout} />}
       <Routes>
         <Route path="/" element={<Form login={login} />} />
         <Route path="/createuser" element={<CreateUser login={login} />} />

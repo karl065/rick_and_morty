@@ -2,6 +2,7 @@ const express = require('express');
 const routes = require('./Routes/index.js');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json({limit: '10mb'});
+const {conn} = require('./DB_connection');
 
 const server = express();
 const PORT = 3001;
@@ -25,6 +26,11 @@ server.use((req, res, next) => {
 
 server.use('/rickandmorty', routes);
 
-server.listen(PORT, () => {
-  console.log('Este server esta corriendo en el puerto: ' + PORT);
+server.listen(PORT, async () => {
+  try {
+    await conn.sync({force: true});
+    console.log('Este server esta corriendo en el puerto: ' + PORT);
+  } catch (error) {
+    console.log('Unable to connect to the database: ', error.message);
+  }
 });
